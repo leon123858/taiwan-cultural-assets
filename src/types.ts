@@ -34,3 +34,17 @@ export interface IAntiquities {
 	/**@description 資料來源*/
 	dataSource: string; //資料來源
 }
+/**
+ * caseName(古蹟名稱)
+caseId(古蹟代碼)
+assetsClassifyName(古蹟級別)
+assetsTypes
+[{"name"}]（古蹟種類）
+govInstitutionName(主管機關)
+belongAddress(古蹟地址)
+belongCity(所在地區)
+govInstitution(機關名稱)
+govDeptName(主管單位)
+govDeptPhone(機關電話)
+ */
+export interface IMonuments {}

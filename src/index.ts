@@ -23,4 +23,4 @@ function getAntiquitiesListByRegion(region: string) {
 	}[];
 }
 
-export { getAntiquitiesIntroduce, getAntiquitiesListByRegion };
+export { getAntiquitiesIntroduce, getAntiquitiesListByRegion, IAntiquities };
