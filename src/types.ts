@@ -1,50 +1,61 @@
 export interface IAntiquities {
-	/**@description 古物編號*/
+	/**@description 古物代碼*/
 	caseId: string;
 	/**@description 圖片網址*/
 	representImage: string;
 	/**@description 古物名稱*/
-	caseName: string; //古物名稱
+	caseName: string;
 	/**@description 古物級別*/
-	assetsClassifyName: string; //古物級別
+	assetsClassifyName: string;
 	/**@description 古物年代*/
-	descAge: string; //古物年代
-	/**@description 尺寸*/
-	descSize: string; //尺寸
-	/**@description 古物材料*/
-	descMaterial: string; //古物材料
-	/**@description 保存狀態*/
-	reserveStatus: string; //保存狀態
+	descAge: string;
+	/**@description 古物尺寸*/
+	descSize: string;
+	/**@description 古物材質*/
+	descMaterial: string;
+	/**@description 保存狀況*/
+	reserveStatus?: string;
 	/**@description 保管單位*/
-	holder: string[]; //保管單位
+	holder: string[];
 	/**@description 主管機關*/
-	manager: string[]; //主管機關
+	manager: string[];
 	/**@description 保存單位*/
-	place: string[]; //保存單位
+	place: string[];
 	/**@description 保存地址*/
-	address: string[]; //保存地址
+	address: string[];
 	/**@description 保存空間屬性*/
-	saveSpace: string[]; //保存空間屬性
+	saveSpace: string[];
 	/**@description 保存空間文資身分*/
-	saveSpaceId: string[]; //保存空間文資身分
+	saveSpaceId: string[];
 	/**@description 保存環境*/
-	environment: string; //保存環境
+	environment: string;
 	/**@description 古物件數*/
-	amount: number; //古物件數
+	amount: number;
 	/**@description 資料來源*/
-	dataSource: string; //資料來源
+	dataSource: string;
 }
-/**
- * caseName(古蹟名稱)
-caseId(古蹟代碼)
-assetsClassifyName(古蹟級別)
-assetsTypes
-[{"name"}]（古蹟種類）
-govInstitutionName(主管機關)
-belongAddress(古蹟地址)
-belongCity(所在地區)
-govInstitution(機關名稱)
-govDeptName(主管單位)
-govDeptPhone(機關電話)
- */
-export interface IMonuments {}
+
+export interface IMonuments {
+	/**@description 古蹟代碼*/
+	caseId: string;
+	/**@description 圖片網址*/
+	representImage: string;
+	/**@description 古蹟名稱*/
+	caseName: string;
+	/**@description 古蹟級別*/
+	assetsClassifyName: string;
+	/**@description 古蹟種類*/
+	assetsTypes: string[];
+	/**@description 主管機關*/
+	govInstitutionName: string;
+	/**@description 古蹟地址*/
+	belongAddress: string;
+	/**@description 所在地區*/
+	belongCity: string;
+	/**@description 機關名稱*/
+	govInstitution: string;
+	/**@description 主管單位*/
+	govDeptName: string;
+	/**@description 機關電話*/
+	govDeptPhone: string;
+}

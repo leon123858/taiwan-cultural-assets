@@ -6,6 +6,8 @@ import { expect } from 'chai';
 import {
 	getAntiquitiesIntroduce,
 	getAntiquitiesListByRegion,
+	getMonumentsIntroduce,
+	getMonumentsListByRegion,
 } from '../src/index';
 
 describe(`script execute success`, function () {
@@ -17,14 +19,22 @@ describe(`script execute success`, function () {
 		const list = await import('../src/assets/Antiquities');
 		expect(list.default.length > 2000).is.true;
 	});
-	it(`Should construct 古蹟`, async () => {});
+	it(`Should construct 古蹟`, async () => {
+		const list = await import('../src/assets/Monuments');
+		expect(list.default.length > 1000).is.true;
+	});
 	it(`Should construct 古物列表`, async () => {
 		const json = await import('../src/assets/id2Antiquities');
-		expect(Object.keys(json.default).length > 20).is.true;
-		const json2 = await import('../src/assets/region2Id');
+		expect(Object.keys(json.default).length > 200).is.true;
+		const json2 = await import('../src/assets/region2Antiquities');
 		expect(Object.keys(json2.default).length > 20).is.true;
 	});
-	it(`Should construct 古蹟列表`, async () => {});
+	it(`Should construct 古蹟列表`, async () => {
+		const json = await import('../src/assets/id2Monuments');
+		expect(Object.keys(json.default).length > 200).is.true;
+		const json2 = await import('../src/assets/region2Monuments');
+		expect(Object.keys(json2.default).length > 20).is.true;
+	});
 });
 
 describe(`functions get data success`, () => {
@@ -40,6 +50,16 @@ describe(`functions get data success`, () => {
 		const result2 = getAntiquitiesListByRegion('臺北市士林區');
 		expect(result2).is.not.undefined;
 	});
-	it(`Should get 古蹟 introduce`, async () => {});
-	it(`Should get 古蹟 List`, async () => {});
+	it(`Should get 古蹟 introduce`, async () => {
+		const result = getMonumentsIntroduce('55688');
+		expect(result).is.undefined;
+		const result2 = getMonumentsIntroduce('19980430000001');
+		expect(result2).is.not.undefined;
+	});
+	it(`Should get 古蹟 List`, async () => {
+		const result = getMonumentsListByRegion('AAAAA');
+		expect(result).is.undefined;
+		const result2 = getMonumentsListByRegion('臺北市士林區');
+		expect(result2).is.not.undefined;
+	});
 });

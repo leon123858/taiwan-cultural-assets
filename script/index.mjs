@@ -1,7 +1,7 @@
 import fetch from 'node-fetch';
 import prompts from 'prompts';
-import fs from 'fs/promises';
-import { MODE, URL, DATA_SOURCE, ASSETS_PATH } from './const.mjs';
+import { saveAssets } from './saveAssets.mjs';
+import { MODE, URL, DATA_SOURCE } from './const.mjs';
 
 const fetchAntiquities = async () => {
 	const response = await fetch(URL.古物);
@@ -52,39 +52,57 @@ const fetchAntiquities = async () => {
 			dataSource: DATA_SOURCE, //資料來源
 		};
 	});
-	const promiseList = [];
-	promiseList.push(
-		fs.writeFile(
-			`${ASSETS_PATH}Antiquities.ts`,
-			'export default' + JSON.stringify(list) + ' as any[]',
-			{
-				encoding: 'utf-8',
-			}
-		)
+	await saveAssets(
+		[list, id2Antiquities, region2Id],
+		['Antiquities', 'id2Antiquities', 'region2Antiquities']
 	);
-	promiseList.push(
-		fs.writeFile(
-			`${ASSETS_PATH}id2Antiquities.ts`,
-			'export default' +
-				JSON.stringify(id2Antiquities) +
-				' as {[key:string]:number}',
-			{
-				encoding: 'utf-8',
-			}
-		)
+};
+
+const fetchMonuments = async () => {
+	const response = await fetch(URL.古蹟);
+	const data = await response.json();
+	const region2Id = {};
+	const id2Monuments = {};
+	const list = data.map((element, index) => {
+		const {
+			caseId,
+			belongCity,
+			representImage = '',
+			caseName = '缺失名稱資訊',
+			assetsClassifyName = '缺失級別資訊',
+			assetsTypes = '',
+			govInstitutionName = '',
+			belongAddress = '',
+			govInstitution = '',
+			govDeptName = '',
+			govDeptPhone = '',
+		} = element;
+		if (caseId) {
+			id2Monuments[caseId] = index;
+		}
+		if (caseId && belongCity) {
+			region2Id[belongCity]
+				? region2Id[belongCity].push({ caseId, caseName })
+				: (region2Id[belongCity] = [{ caseId, caseName }]);
+		}
+		return {
+			caseId,
+			belongCity,
+			representImage,
+			caseName,
+			assetsClassifyName,
+			assetsTypes: assetsTypes.map((element) => element.name),
+			govInstitutionName,
+			belongAddress,
+			govInstitution,
+			govDeptName,
+			govDeptPhone,
+		};
+	});
+	await saveAssets(
+		[list, id2Monuments, region2Id],
+		['Monuments', 'id2Monuments', 'region2Monuments']
 	);
-	promiseList.push(
-		fs.writeFile(
-			`${ASSETS_PATH}region2Id.ts`,
-			'export default' +
-				JSON.stringify(region2Id) +
-				' as {[key:string]:{caseId:string,caseName:string}[]}',
-			{
-				encoding: 'utf-8',
-			}
-		)
-	);
-	await Promise.all(promiseList);
 };
 
 const main = async () => {
@@ -105,12 +123,13 @@ const main = async () => {
 	).mode;
 	switch (mode) {
 		case MODE.全部:
+			await Promise.all([fetchAntiquities(), fetchMonuments()]);
 			break;
 		case MODE.古物:
 			await fetchAntiquities();
 			break;
 		case MODE.古蹟:
-			console.log('to do, but wait PM');
+			await fetchMonuments();
 			break;
 		case MODE.自訂:
 			break;
