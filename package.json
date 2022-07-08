@@ -1,0 +1,37 @@
+{
+	"name": "taiwan-cultural-assets",
+	"version": "1.0.0",
+	"description": "the wrapper about OpenAPI(data.boch.gov.tw/data) for taiwan cultural-assets",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"files": [
+		"/dist",
+		"README.md",
+		"LICENSE"
+	],
+	"repository": "https://github.com/leon123858/taiwan-cultural-assets",
+	"scripts": {
+		"script": "node ./script/index.mjs",
+		"test": "mocha -r ts-node/register test/*.ts",
+		"start": "tsc --build && node ./dist/index.js",
+		"deploy": "yarn script && yarn test && yarn start && yarn publish",
+		"addUser": "npm adduser --registry=https://registry.npmjs.org"
+	},
+	"author": "leon123858",
+	"license": "Apache-2.0",
+	"keywords": [
+		"taiwan"
+	],
+	"devDependencies": {
+		"@types/chai": "^4.3.1",
+		"@types/mocha": "^9.1.1",
+		"@types/node": "^17.0.41",
+		"chai": "^4.3.6",
+		"mocha": "^10.0.0",
+		"node-fetch": "2",
+		"prompts": "^2.4.2",
+		"ts-node": "^10.8.1",
+		"typescript": "^4.7.3"
+	},
+	"dependencies": {}
+}
