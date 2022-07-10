@@ -1,5 +1,6 @@
 import fetch from 'node-fetch';
 import prompts from 'prompts';
+//import { readFile } from 'fs/promises';
 import { saveAssets } from './saveAssets.mjs';
 import { MODE, URL, DATA_SOURCE } from './const.mjs';
 
@@ -132,6 +133,19 @@ const main = async () => {
 			await fetchMonuments();
 			break;
 		case MODE.自訂:
+			// const jsonList = JSON.parse(await readFile('./script/city_county.json'));
+			// const cityList = jsonList.map((v) => {
+			// 	return {
+			// 		name: v.CityName,
+			// 		list: v.AreaList.map((sv) => sv.AreaName),
+			// 	};
+			// });
+			// console.log(cityList);
+			// const obj = {};
+			// cityList.forEach((element) => {
+			// 	obj[element.name] = element.list;
+			// });
+			// console.log(obj);
 			break;
 		default:
 			console.log('should choose mode');

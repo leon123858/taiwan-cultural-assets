@@ -4,7 +4,24 @@ import region2Antiquities from './assets/region2Antiquities';
 import Monuments from './assets/Monuments';
 import id2Monuments from './assets/id2Monuments';
 import region2Monuments from './assets/region2Monuments';
+import areas from './assets/city_area';
 import { IAntiquities, IMonuments } from './types';
+/**
+ * @description 獲取台灣縣市列表
+ * @returns string[]
+ */
+function taiwanCities() {
+	return Object.keys(areas);
+}
+/**
+ * @description 依台灣縣市回傳鄉鎮區列表
+ * @param cityName 台灣縣市
+ * @returns string[]
+ */
+function taiwanCitiesAreas(cityName: string) {
+	return areas[cityName] as string[];
+}
+
 /**
  * @description 獲取古物詳細資料
  * @param AntiquitiesId
@@ -52,6 +69,8 @@ export {
 	getAntiquitiesListByRegion,
 	getMonumentsIntroduce,
 	getMonumentsListByRegion,
+	taiwanCities,
+	taiwanCitiesAreas,
 	IAntiquities,
 	IMonuments,
 };

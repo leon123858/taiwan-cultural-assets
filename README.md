@@ -10,6 +10,8 @@ import {
 	getAntiquitiesListByRegion,
 	getMonumentsIntroduce,
 	getMonumentsListByRegion,
+	taiwanCities,
+	taiwanCitiesAreas,
 	IAntiquities,
 	IMonuments,
 } from "taiwan-cultural-assets"
@@ -20,7 +22,10 @@ const result2:{ caseId:string, caseName:string }[] = getAntiquitiesListByRegion(
 // 呼叫古蹟
 const result3:IMonuments = getMonumentsIntroduce('19980430000001');
 const result4:{ caseId:string, caseName:string }[] = getMonumentsListByRegion('臺北市士林區');
-
+// 臺灣縣市列表
+console.log(taiwanCities() as string[]);
+// 台灣縣市的區域
+console.log(taiwanCitiesAreas('臺北市') as string[])
 
 // note: when their is no result ,return "undefined"
 ```

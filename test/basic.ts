@@ -8,6 +8,8 @@ import {
 	getAntiquitiesListByRegion,
 	getMonumentsIntroduce,
 	getMonumentsListByRegion,
+	taiwanCities,
+	taiwanCitiesAreas,
 } from '../src/index';
 
 describe(`script execute success`, function () {
@@ -61,5 +63,48 @@ describe(`functions get data success`, () => {
 		expect(result).is.undefined;
 		const result2 = getMonumentsListByRegion('臺北市士林區');
 		expect(result2).is.not.undefined;
+	});
+	it('Should get city_area success', async () => {
+		expect(taiwanCities()).eqls([
+			'臺北市',
+			'基隆市',
+			'新北市',
+			'連江縣',
+			'宜蘭縣',
+			'釣魚臺',
+			'新竹市',
+			'新竹縣',
+			'桃園市',
+			'苗栗縣',
+			'臺中市',
+			'彰化縣',
+			'南投縣',
+			'嘉義市',
+			'嘉義縣',
+			'雲林縣',
+			'臺南市',
+			'高雄市',
+			'南海島',
+			'澎湖縣',
+			'金門縣',
+			'屏東縣',
+			'臺東縣',
+			'花蓮縣',
+		]);
+		expect(taiwanCitiesAreas('台北市')).is.undefined;
+		expect(taiwanCitiesAreas('臺北市')).eqls([
+			'中正區',
+			'大同區',
+			'中山區',
+			'松山區',
+			'大安區',
+			'萬華區',
+			'信義區',
+			'士林區',
+			'北投區',
+			'內湖區',
+			'南港區',
+			'文山區',
+		]);
 	});
 });
