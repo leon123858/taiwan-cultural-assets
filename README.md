@@ -6,6 +6,7 @@ the wrapper about OpenAPI(data.boch.gov.tw/data) for taiwan cultural-assets
 
 ```
 import {
+	getAntiquitiesIdList,
   getAntiquitiesIntroduce,
 	getAntiquitiesListByRegion,
 	getMonumentsIntroduce,
@@ -25,7 +26,9 @@ const result4:{ caseId:string, caseName:string }[] = getMonumentsListByRegion('�
 // 臺灣縣市列表
 console.log(taiwanCities() as string[]);
 // 台灣縣市的區域
-console.log(taiwanCitiesAreas('臺北市') as string[])
+console.log(taiwanCitiesAreas('臺北市') as string[]);
+// 獲取全部古物 id
+console.log(getAntiquitiesIdList());
 
 // note: when their is no result ,return "undefined"
 ```

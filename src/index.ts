@@ -63,6 +63,13 @@ function getMonumentsListByRegion(region: string) {
 		caseName: string;
 	}[];
 }
+/**
+ * @description 獲取古物 id 列表
+ * @returns string[] 古物 id 列表
+ */
+function getAntiquitiesIdList() {
+	return Antiquities.map((v) => v.caseId) as string[];
+}
 
 export {
 	getAntiquitiesIntroduce,
@@ -71,6 +78,7 @@ export {
 	getMonumentsListByRegion,
 	taiwanCities,
 	taiwanCitiesAreas,
+	getAntiquitiesIdList,
 	IAntiquities,
 	IMonuments,
 };

@@ -4,6 +4,7 @@
 
 import { expect } from 'chai';
 import {
+	getAntiquitiesIdList,
 	getAntiquitiesIntroduce,
 	getAntiquitiesListByRegion,
 	getMonumentsIntroduce,
@@ -15,7 +16,7 @@ import {
 describe(`script execute success`, function () {
 	this.timeout(5 * 1000);
 	before(async () => {
-		// should run "yarn script first"
+		console.log('should run "yarn script first"');
 	});
 	it(`Should construct 古物`, async () => {
 		const list = await import('../src/assets/Antiquities');
@@ -106,5 +107,8 @@ describe(`functions get data success`, () => {
 			'南港區',
 			'文山區',
 		]);
+	});
+	it('Should get 古物 id list', async () => {
+		expect(getAntiquitiesIdList().length).is.greaterThanOrEqual(2400);
 	});
 });
