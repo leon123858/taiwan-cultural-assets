@@ -21,7 +21,24 @@ function taiwanCities() {
 function taiwanCitiesAreas(cityName: string) {
 	return areas[cityName] as string[];
 }
-
+/**
+ * 拆分連在一起的字串和地區
+ * @param cityArea
+ * @returns [城市,地區]
+ * @example
+ * const tmp = splitTaiwanAreas("宜蘭縣宜蘭市");
+ * console.log(tmp) // [宜蘭縣,宜蘭市]
+ */
+function splitTaiwanAreas(cityArea: string) {
+	const cities = Object.keys(areas);
+	const city = cities.find((element) => {
+		return cityArea.indexOf(element) === 0;
+	});
+	if (!city) {
+		throw new Error('string not mapping to any city in taiwan');
+	}
+	return [city, cityArea.slice(city.length)] as [string, string];
+}
 /**
  * @description 獲取古物詳細資料
  * @param AntiquitiesId
@@ -79,6 +96,7 @@ export {
 	taiwanCities,
 	taiwanCitiesAreas,
 	getAntiquitiesIdList,
+	splitTaiwanAreas,
 	IAntiquities,
 	IMonuments,
 };

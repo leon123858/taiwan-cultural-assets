@@ -29,6 +29,8 @@ console.log(taiwanCities() as string[]);
 console.log(taiwanCitiesAreas('臺北市') as string[]);
 // 獲取全部古物 id
 console.log(getAntiquitiesIdList());
+// 分割城市加地區的字串
+console.log(splitTaiwanAreas("宜蘭縣宜蘭市") as [string,string]) // [宜蘭縣,宜蘭市]
 
 // note: when their is no result ,return "undefined"
 ```

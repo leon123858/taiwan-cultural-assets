@@ -12,19 +12,21 @@ const fetchAntiquities = async () => {
 	const list = data.map((element, index) => {
 		const {
 			caseId,
-			belongCity,
+			addresses: [{ cityName, distName, address }],
 			representImage = '',
 			caseName = '缺失名稱資訊',
 			assetsClassifyName = '缺失級別資訊',
 			descSize = '',
 			descAge = '',
 			descMaterial = '',
+			govInstitutionName = '',
 			keepDepts = [],
 			keepPlaces = [],
+			announcementList: [{ classification = '', officialDocNo = '' }],
 			environment = '',
-			//reserveStatus = '',
 			amount = 1,
 		} = element;
+		const belongCity = `${cityName}${distName}`;
 		if (caseId) {
 			id2Antiquities[caseId] = index;
 		}
@@ -43,11 +45,11 @@ const fetchAntiquities = async () => {
 			descMaterial, //古物材料
 			reserveStatus: '', //保存狀態
 			holder: keepDepts.map((who) => who.name), //保管單位
-			manager: keepDepts.map((who) => who.govInstitutionName), //主管機關
+			manager: [govInstitutionName], //主管機關
 			place: keepPlaces.map((place) => place.name), //保存單位
-			address: keepPlaces.map((place) => place.address), //保存地址
-			saveSpace: keepPlaces.map((place) => place.saveSpace), //保存空間屬性
-			saveSpaceId: keepPlaces.map((place) => place.saveSpaceIdentity), //保存空間文資身分
+			address: [`${belongCity}${address}`], //保存地址
+			saveSpace: [classification], //保存空間屬性
+			saveSpaceId: [officialDocNo], //保存空間文資身分
 			environment, //保存環境
 			amount, //古物件數
 			dataSource: DATA_SOURCE, //資料來源
@@ -67,17 +69,19 @@ const fetchMonuments = async () => {
 	const list = data.map((element, index) => {
 		const {
 			caseId,
-			belongCity,
+			addresses: [{ cityName, distName, address }],
 			representImage = '',
 			caseName = '缺失名稱資訊',
 			assetsClassifyName = '缺失級別資訊',
-			assetsTypes = '',
+			assetsTypes = [],
 			govInstitutionName = '',
-			belongAddress = '',
 			govInstitution = '',
 			govDeptName = '',
 			govDeptPhone = '',
 		} = element;
+		const belongCity = `${cityName}${distName}`;
+		const belongAddress = address ? belongCity + address : '';
+
 		if (caseId) {
 			id2Monuments[caseId] = index;
 		}

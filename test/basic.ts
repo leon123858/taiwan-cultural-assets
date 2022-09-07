@@ -11,6 +11,7 @@ import {
 	getMonumentsListByRegion,
 	taiwanCities,
 	taiwanCitiesAreas,
+	splitTaiwanAreas,
 } from '../src/index';
 
 describe(`script execute success`, function () {
@@ -108,5 +109,17 @@ describe(`functions get data success`, () => {
 	});
 	it('Should get 古物 id list', async () => {
 		expect(getAntiquitiesIdList().length).is.greaterThanOrEqual(2400);
+	});
+	it('Should split city area', async () => {
+		const tmp = splitTaiwanAreas('宜蘭縣宜蘭市');
+		expect(tmp).eqls(['宜蘭縣', '宜蘭市']);
+		const tmp2 = splitTaiwanAreas('臺北市東區');
+		expect(tmp2).eqls(['臺北市', '東區']);
+		try {
+			splitTaiwanAreas('測試市東區');
+			throw 'no error';
+		} catch (err) {
+			expect(err).is.not.eql('no error');
+		}
 	});
 });
