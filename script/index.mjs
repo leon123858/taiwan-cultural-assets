@@ -13,7 +13,7 @@ const fetchAntiquities = async () => {
 		const {
 			caseId,
 			addresses: [{ cityName, distName, address }],
-			representImage = '',
+			representImage,
 			caseName = '缺失名稱資訊',
 			assetsClassifyName = '缺失級別資訊',
 			descSize = '',
@@ -27,6 +27,10 @@ const fetchAntiquities = async () => {
 			amount = 1,
 		} = element;
 		const belongCity = `${cityName}${distName}`;
+		let original = '';
+		if (representImage) {
+			original = representImage.original || '';
+		}
 		if (caseId) {
 			id2Antiquities[caseId] = index;
 		}
@@ -37,7 +41,7 @@ const fetchAntiquities = async () => {
 		}
 		return {
 			caseId,
-			representImage, //圖片網址
+			representImage: original, //圖片網址
 			caseName, //古物名稱
 			assetsClassifyName, //古物級別
 			descAge, //古物年代
@@ -70,7 +74,7 @@ const fetchMonuments = async () => {
 		const {
 			caseId,
 			addresses: [{ cityName, distName, address }],
-			representImage = '',
+			representImage,
 			caseName = '缺失名稱資訊',
 			assetsClassifyName = '缺失級別資訊',
 			assetsTypes = [],
@@ -81,7 +85,10 @@ const fetchMonuments = async () => {
 		} = element;
 		const belongCity = `${cityName}${distName}`;
 		const belongAddress = address ? belongCity + address : '';
-
+		let original = '';
+		if (representImage) {
+			original = representImage.original || '';
+		}
 		if (caseId) {
 			id2Monuments[caseId] = index;
 		}
@@ -93,7 +100,7 @@ const fetchMonuments = async () => {
 		return {
 			caseId,
 			belongCity,
-			representImage,
+			representImage: original,
 			caseName,
 			assetsClassifyName,
 			assetsTypes: assetsTypes.map((element) => element.name),

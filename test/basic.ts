@@ -47,6 +47,26 @@ describe(`functions get data success`, () => {
 		expect(result).is.undefined;
 		const result2 = getAntiquitiesIntroduce('20140815000001');
 		expect(result2).is.not.undefined;
+		expect(result2).eqls({
+			caseId: '20140815000001',
+			representImage:
+				'https://data.boch.gov.tw/old_upload/_upload/Assets_new/antiquity/39126/photo/pic018.jpg',
+			caseName: '臺湾野球史',
+			assetsClassifyName: '一般古物',
+			descAge: '西元1932年（日治昭和7年）',
+			descSize: '長18.6公分  寬12.8公分  厚4.2公分',
+			descMaterial: '紙質',
+			reserveStatus: '',
+			holder: ['財OOOOOOOOOOO'],
+			manager: ['嘉義市政府'],
+			place: ['財OOOOOOOOOOO'],
+			address: ['嘉義市東區忠孝路275號'],
+			saveSpace: ['指定/登錄'],
+			saveSpaceId: ['府授文資字第1035102952號'],
+			environment: '庫房或展覽空間',
+			amount: 1,
+			dataSource: '文化資料開放服務網',
+		});
 	});
 	it(`Should get 古物 List`, async () => {
 		const result = getAntiquitiesListByRegion('AAAAA');
@@ -59,6 +79,20 @@ describe(`functions get data success`, () => {
 		expect(result).is.undefined;
 		const result2 = getMonumentsIntroduce('19980430000001');
 		expect(result2).is.not.undefined;
+		expect(result2).eqls({
+			caseId: '19980430000001',
+			belongCity: '嘉義市東區',
+			representImage:
+				'https://data.boch.gov.tw/upload/representImageFile/2021-04-01/13bdb094-e508-467a-8142-00bb424e815a/P_20210319_144805.jpg',
+			caseName: '嘉義仁武宮',
+			assetsClassifyName: '縣(市)定古蹟',
+			assetsTypes: ['寺廟'],
+			govInstitutionName: '嘉義市政府',
+			belongAddress: '嘉義市東區仁武里8鄰北榮街54號',
+			govInstitution: '嘉義市政府文化局',
+			govDeptName: '文化資產科',
+			govDeptPhone: '2788225#502',
+		});
 	});
 	it(`Should get 古蹟 List`, async () => {
 		const result = getMonumentsListByRegion('AAAAA');
