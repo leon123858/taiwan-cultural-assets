@@ -1,6 +1,6 @@
 {
 	"name": "taiwan-cultural-assets",
-	"version": "1.2.11",
+	"version": "1.2.12",
 	"description": "the wrapper about OpenAPI(data.boch.gov.tw/data) for taiwan cultural-assets",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
